@@ -1,3 +1,4 @@
+<?php include "functions.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GET-Request - Demo 2</title>
+    <title>GET-Request - Demo 1</title>
 </head>
 
 <body>
@@ -21,11 +22,13 @@
     // Superglobal arrays
     // print_array($_SERVER);
     print_array($_GET);
+
     echo "<hr>";
 
     // Indexed arrays
     $arrayDemo01 = ["A", "B", "C", "D", "E", "F"];
     $arrayDemo02 = array("A", "B", "C", "D", "E", "F");
+
     print_array($arrayDemo01);
 
     // Associative arrays
@@ -35,14 +38,13 @@
     );
     print_array($age);
 
-    echo "<h1>Ben is " . $age['Ben'] . " years old.</h1>";
-    echo "<h1>Ben is $age[Ben] years old.</h1>";
+    echo "<h1>Ben is " . $age['Ben'] . " years old.</h1>"; // Med konkatenering
+    echo "<h1>Ben is $age[Ben] years old.</h1>";           // Utan konkatenering
 
-    echo "<h1>Hej " . $_GET['name'] . "<h1>";
-    echo "<h1>
-      Hej $_GET[name]<br>Ditt ordernummer är $_GET[order]
-     </h1>";
-
+    if (isset($_GET['name'])) {
+        echo "<h1>Hej " . $_GET['name'] . "<h1>";        // Med konkatenering
+        echo "<h2Ditt ordernummer är $_GET[order]</h2>"; // Utan konkatenering
+    }
 
     ?>
 
@@ -57,16 +59,3 @@
 </body>
 
 </html>
-
-
-<?php
-
-/**************************
- * Utskriftsvänlig array
- */
-function print_array($array)
-{
-    echo "<pre>";
-    print_r($array);
-    echo "</pre>";
-}

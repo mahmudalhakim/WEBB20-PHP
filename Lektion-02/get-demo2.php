@@ -1,3 +1,5 @@
+<?php include "functions.php"; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,24 +30,14 @@
     // Ternary oparator
     $price = isset($_GET['price']) ? $_GET['price'] : 'XX';
 
+    // Null coalescing operator (PHP 7)
+    $price = $_GET['price'] ?? "x";
+
     echo "<h2>Pris: $price kr</h2>"; 
     
-
-
-
     print_array($_GET);
-
-
-    function print_array($array)
-    {
-        echo "<pre>";
-        print_r($array);
-        echo "</pre>";
-    }
 
     ?>
 
-
 </body>
-
 </html>
