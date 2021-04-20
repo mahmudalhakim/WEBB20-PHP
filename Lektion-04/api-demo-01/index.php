@@ -17,18 +17,18 @@
 
     <?php
 
-        echo "<h2>Från lektion 3</h2>";
-        App::main();
 
-        echo "<h2>Arbeta med setters & getters</h2>";
-        App::setEndpoint("TEST 1");
-        App::setEndpoint("https://jsonplaceholder.typicode.com/users");
-        
-        echo "<p class='alert alert-success'>The endpoint is: " . App::getEndpoint() . "</p>";
+    // App::$endpoint; // cannot access private property App::$endpoint
 
-        echo "<h2>Att skicka argument till main-metoden</h2>";
-        App::main("TEST 2");
-        App::main("https://jsonplaceholder.typicode.com/users");
+    echo "<h2>Arbeta med setters & getters</h2>";
+    App::setEndpoint("TEST 1");
+    echo "<p class='alert alert-success'>" . App::getEndpoint() . "</p>";
+
+    echo "<h2>Skicka en endpoint som argument till main()</h2>";
+    App::main("TEST 2");
+
+    echo "<h2>Från lektion 3</h2>";
+    App::main();
 
     ?>
 

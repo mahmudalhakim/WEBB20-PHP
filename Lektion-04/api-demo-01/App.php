@@ -5,31 +5,33 @@ class App
 
     /*****
      * En klassvaraibel = statisk variabel
+     * men inkapsling (Encapsulation)
      */
     private static $endpoint = "https://jsonplaceholder.typicode.com/users";
 
-    public static function setEndpoint($url = false)
-    {
-        if (filter_var($url, FILTER_VALIDATE_URL)) {
+    // Setters & getters
+    public static function setEndpoint($url){
+        if(filter_var($url, FILTER_VALIDATE_URL)){
             self::$endpoint = $url;
-        } else {
-            echo ("<p class='alert alert-danger'>$url is not a valid URL.</p>");
+        }
+        else{
+            echo "<p class='alert alert-danger'>Error: $url is not a valid endpoint.</p>";
         }
     }
-
-    public static function getEndpoint()
-    {
+    public static function getEndpoint(){
         return self::$endpoint;
     }
+
 
     /*****
      * The Main Method
      */
     public static function main($url = false)
     {
-        if ($url) {
+        if($url){
             self::setEndpoint($url);
         }
+
         try {
             $array = self::getData();
             self::viewData($array);
