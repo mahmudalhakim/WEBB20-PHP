@@ -9,20 +9,56 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 header("Referrer-Policy: no-referrer");
 
 // Steg 2 - Skapa arrayer
-$firstNames = ["Åsa", "Mahmud", "Björn", "Jimmy", "F5", "F6", "F7", "F8", "F9", "F10"];
-$lastNames = ["Öberg", "Al Hakim", "L3", "L4", "L5", "L6", "L7", "L8", "L9", "L10"];
+$firstNamesMale = ["Kalle", "Mahmud", "Björn", "Jimmy", "Adam", "Bertil", "Cesar", "David", "Emil", "Dan"];
+$firstNamesFemale = ["Åsa", "Sara", "Maria", "Lotta", "Amanda", "Sigrun", "Annika", "Yasmin", "Ulla", "Astrid"];
+$lastNames = ["Öberg", "Al Hakim", "Ericson", "Björk", "Berglund", "Lundqvist", "Söderberg", "Hedlund", "Lundin", "Nyström"];
 
 // Steg 3 - Skapa 10 namn och spara dessa i en ny array
 $names = array();
 
-for ($i = 0; $i < 10; $i++) {
+for ($i = 0; $i < 4; $i++) {
+    $firstName = $firstNamesMale[rand(0, 9)];
+    $lastName = $lastNames[rand(0, 9)];
     $name = array(
-        "firstname" => $firstNames[rand(0, 9)],
-        "lastname" => $lastNames[rand(0, 9)]
+        "firstname" => $firstName,
+        "lastname" => $lastName,
+        "gender" => "male",
+        "age" => rand(1, 99),
+        "email" => email($firstName, $lastName)
     );
     array_push($names, $name);
 }
 
+for ($i = 0; $i < 4; $i++) {
+    $firstName = $firstNamesFemale[rand(0, 9)];
+    $lastName = $lastNames[rand(0, 9)];
+    $name = array(
+        "firstname" => $firstName,
+        "lastname" => $lastName,
+        "gender" => "female",
+        "age" => rand(1, 99),
+        "email" => email($firstName, $lastName)
+    );
+    array_push($names, $name);
+}
+
+function email($firstName, $lastName)
+{
+    $firstName = mb_strtolower($firstName);
+    $lastName = mb_strtolower($lastName);
+
+    $search  = array('å', 'ä', 'ö', 'é', '-', ' ');
+    $replace = array('a', 'a', 'o', 'e', '',  '');
+    $firstName = str_replace($search, $replace, $firstName);
+    $lastName = str_replace($search, $replace, $lastName);
+
+    $firstName = mb_substr($firstName, 0, 2);
+    $lastName = mb_substr($lastName, 0, 3);
+
+    $email = "$firstName$lastName@example.com";
+
+    return $email;
+}
 // print_r($names); die();
 
 // Steg 4 – Konvertera PHP-arrayen ($names) till JSON
