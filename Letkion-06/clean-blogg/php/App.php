@@ -55,12 +55,13 @@ class App
 
         for ($i=0; $i < $count; $i++) { 
             
-            // $id, $author, $title, $image
+            $random = rand(0, count( $_SESSION['my_memes']) - 1);
+
             $post = new Post(
                 $i,
                 "Mahmud Al Hakim",
-                $_SESSION['my_memes'][$i]['name'],
-                $_SESSION['my_memes'][$i]['url'],
+                $_SESSION['my_memes'][$random]['name'],
+                $_SESSION['my_memes'][$random]['url'],
             );
 
             array_push($posts, $post->toArray());

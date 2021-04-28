@@ -35,6 +35,8 @@ class Post
      */
     public function getText()
     {
+        // return "Lorem ipsum dolor sit amet, consectetur adipiscing elit";
+
         $endpoint = "https://loripsum.net/api/2/short/headers";
         return file_get_contents($endpoint);
     }
