@@ -16,11 +16,11 @@ class Post
     /**
      * En konstruktor
      */
-    public function __construct($author, $meme)
+    public function __construct($author, $title, $image)
     {
         $this->author = $author;
-        $this->title  = $meme['name'];
-        $this->image  = $meme['url'];
+        $this->title  = $title;
+        $this->image  = $image;
         $this->text   = $this->getText();
     }
 

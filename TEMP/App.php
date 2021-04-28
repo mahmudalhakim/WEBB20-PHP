@@ -34,10 +34,15 @@ class App
      */
     public static function getPosts($count)
     {
+       // print_r($_SESSION);
         $posts = array();
 
         for ($index = 0; $index < $count; $index++) {
-            $postObject = new Post("Mahmud Al Hakim", $_SESSION['memes'][$index]);
+            $postObject = new Post(
+                "Mahmud Al Hakim", 
+                $_SESSION['memes'][$index]['name'],
+                $_SESSION['memes'][$index]['url']
+            );
             $postArray = $postObject->toArray();
             array_push($posts, $postArray);
         }
