@@ -2,15 +2,15 @@
 
 session_start();
 
-require_once 'php/Post.php';
+require_once 'Post.php';
 
 class App
 {
     public static function main()
     {
         self::getMemes();
-        $array = self::getData();
-        self::viewData($array);
+        $posts = self::getPosts(2);
+        self::viewPosts($posts);
     }
 
     /**
@@ -29,37 +29,37 @@ class App
     }
 
     /**
-     * Klassmetoden getData skapar en array som innehåller 10 inlägg
+     * Klassmetoden getPosts skapar en array som innehåller 10 inlägg
      * OBS! Varje inlägg är en array
      */
-    public static function getData()
+    public static function getPosts($count)
     {
-        $bloggPosts = array();
+        $posts = array();
 
-        for ($index = 0; $index < 10; $index++) {
-            $postObject = new Post("Mahmud Al Hakim", $index);
+        for ($index = 0; $index < $count; $index++) {
+            $postObject = new Post("Mahmud Al Hakim", $_SESSION['memes'][$index]);
             $postArray = $postObject->toArray();
-            array_push($bloggPosts, $postArray);
+            array_push($posts, $postArray);
         }
 
-        return $bloggPosts;
+        return $posts;
     }
 
     /**
-     * Klassmetoden viewData skapar en mall (HTML-template)
+     * Klassmetoden viewPosts skapar en mall (HTML-template)
      * och skickar mallen till klienten (webbläsare)
      */
-    public static function viewData($array)
+    public static function viewPosts($posts)
     {
         $template = "";
 
-        foreach ($array as $postArray) {
+        foreach ($posts as $post) {
             $template .= "
             <div class='post-preview'>
-                <h2 class='post-title'>$postArray[title]</h2>
-                <img src='$postArray[image]' alt='$postArray[title]' class='img-fluid'>
-                <div class='post-subtitle'>$postArray[text]</div>
-                <p class='post-meta'>Posted by $postArray[author]</p>
+                <h2 class='post-title'>$post[title]</h2>
+                <img src='$post[image]' alt='$post[title]' class='img-fluid'>
+                <div class='post-subtitle'>$post[text]</div>
+                <p class='post-meta'>Posted by $post[author]</p>
             </div>
             <hr>";
         }
@@ -67,3 +67,6 @@ class App
         echo $template;
     }
 }
+
+
+App::main();

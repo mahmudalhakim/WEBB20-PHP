@@ -16,11 +16,11 @@ class Post
     /**
      * En konstruktor
      */
-    public function __construct($author, $index)
+    public function __construct($author, $meme)
     {
         $this->author = $author;
-        $this->title  = $this->getTitle($index);
-        $this->image  = $this->getImage($index);
+        $this->title  = $meme['name'];
+        $this->image  = $meme['url'];
         $this->text   = $this->getText();
     }
 
@@ -37,26 +37,6 @@ class Post
         );
 
         return $array;
-    }
-
-    /**
-     * En instansmetod som hämtar en bild (bildens URL)
-     */
-    public function getImage($index)
-    {
-        // return "https://picsum.photos/800/300";
-        $meme = $_SESSION['memes'][$index];
-        $url = $meme['url'];
-        return $url;
-    }
-
-    /**
-     * En instansmetod som hämtar titel 
-     */
-    public function getTitle($index)
-    {
-        $meme = $_SESSION['memes'][$index];
-        return $meme['name'];
     }
 
     /**
