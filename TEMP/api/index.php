@@ -23,7 +23,6 @@ include_once("Database.php");
 include_once("Name.php");
 
 $db = new Database();
-
 $firstNamesMale = $db->getFirstNamesMale();
 $firstNamesFemale = $db->getFirstNamesFemale();
 $lastNames = $db->getLastNames();
