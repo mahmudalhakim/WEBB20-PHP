@@ -29,7 +29,7 @@ class Database
     /**
      * Select data from a table
      */
-    public function select($table)
+    private function select($table)
     {
         $stmt = $this->conn->prepare("SELECT * FROM $table");
         $stmt->execute();
@@ -52,5 +52,4 @@ class Database
         $lastNames = $this->select("lastNames");
         return $lastNames;
     }
-
 }
