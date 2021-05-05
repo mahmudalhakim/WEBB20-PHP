@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * En klass som hanterar data från namnapi-databasen
+ */
 class Database
 {
 
@@ -26,8 +29,10 @@ class Database
     }
 
     /**
-     * Select är en instansmetod 
-     * som hämtar data från en valfri tabell
+     * Select är en instansmetod (hjälpmetod)
+     * som hämtar den första kolumnen 
+     * från en valfri tabell
+     * Returnerar en indexerad array
      */
     private function select($table){
         $stmt = $this->conn->prepare("SELECT * FROM $table");
