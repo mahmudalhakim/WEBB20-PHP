@@ -11,6 +11,8 @@ require_once("Database.php");
 
 $db = new Database();
 
+$gender = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // print_r($_POST);
